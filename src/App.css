@@ -1,0 +1,39 @@
+/* src/App.css */
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
+.resume-container {
+  background: white;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  color: #333;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.resume-header h1 { margin: 0; color: #2c3e50; }
+.resume-header .title { font-size: 1.2rem; color: #666; margin: 5px 0 15px; }
+
+.resume-section { margin-bottom: 25px; }
+.resume-section h2 { color: #2c3e50; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
+.resume-section hr { border: 0; border-top: 2px solid #eee; margin-bottom: 15px; }
+
+.skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.skill-tag { background: #eef2f6; padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; }
+
+.job-header { display: flex; justify-content: space-between; align-items: baseline; }
+.experience-item { margin-bottom: 20px; }
+.experience-item h4 { margin: 0 0 5px; color: #555; font-weight: normal; }
+
+a { color: #3498db; text-decoration: none; }
