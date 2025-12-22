@@ -1,39 +1,131 @@
 /* src/App.css */
+
+/* 1. Global & Page Setup (No Scroll on Desktop) */
 body {
-  background-color: #f0f2f5;
+  background-color: #e9ecef;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 40px 0;
-  margin: 0;
+  align-items: center;
+  overflow: hidden; /* Lock scroll on desktop */
 }
 
-.resume-container {
-  background: white;
+.page-wrapper {
   width: 100%;
-  max-width: 800px;
-  padding: 40px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  color: #333;
+  max-width: 1200px;
+  height: 95vh; /* Occupy 95% of screen height */
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-.resume-header {
-  text-align: center;
-  margin-bottom: 30px;
+/* 2. THE GRID LAYOUT */
+.resume-grid {
+  display: grid;
+  height: 100%;
+  gap: 20px;
+  /* Col 1: 25% (Education/Awards)
+     Col 2: 50% (Experience)
+     Col 3: 25% (Skills)
+  */
+  grid-template-columns: 4fr 4fr 3fr; 
+  /* Row 1: Header (Auto height)
+     Row 2: Summary (Auto height)
+     Row 3: Main Content (Fills remaining space)
+  */
+  grid-template-rows: auto auto 1fr; 
+  grid-template-areas: 
+    "header header header"
+    "summary summary summary"
+    "left   center  right";
 }
 
-.resume-header h1 { margin: 0; color: #2c3e50; }
-.resume-header .title { font-size: 1.2rem; color: #666; margin: 5px 0 15px; }
+/* Assign Grid Areas */
+.area-header  { grid-area: header; }
+.area-summary { grid-area: summary; }
+.area-left    { grid-area: left; }
+.area-center  { grid-area: center; }
+.area-right   { grid-area: right; }
 
-.resume-section { margin-bottom: 25px; }
-.resume-section h2 { color: #2c3e50; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 5px; }
-.resume-section hr { border: 0; border-top: 2px solid #eee; margin-bottom: 15px; }
+/* 3. Section Styling (Compact) */
+.resume-section h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #2c3e50;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 5px;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
 
-.skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-.skill-tag { background: #eef2f6; padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; }
+/* 4. Component Styles */
 
+/* HEADER (Compact) */
+.resume-header { text-align: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 5px; }
+.resume-header h1 { margin: 0; font-size: 2rem; color: #2c3e50; }
+.header-row { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 5px; font-size: 0.9rem; color: #666; }
+.contact-info { display: flex; gap: 15px; }
+.contact-info a { color: #3498db; font-weight: 500; text-decoration: none; }
+
+/* SUMMARY */
+.area-summary p { margin: 0; color: #444; line-height: 1.4; font-size: 0.95rem; }
+
+/* EDUCATION & AWARDS (Left Col) */
+.education-item { margin-bottom: 12px; }
+.edu-header { display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; color: #2c3e50; }
+.education-item p { margin: 0; font-size: 0.85rem; color: #555; }
+.education-item .date { color: #888; font-weight: normal; }
+
+.awards-list { padding-left: 20px; margin: 0; font-size: 0.85rem; color: #555; line-height: 1.4; }
+.awards-list li { margin-bottom: 5px; }
+
+/* EXPERIENCE (Center Col) */
+.experience-item { margin-bottom: 15px; border-left: 3px solid #eee; padding-left: 15px; }
 .job-header { display: flex; justify-content: space-between; align-items: baseline; }
-.experience-item { margin-bottom: 20px; }
-.experience-item h4 { margin: 0 0 5px; color: #555; font-weight: normal; }
+.job-header h3 { margin: 0; font-size: 1rem; color: #2c3e50; }
+.job-header .date { font-size: 0.85rem; color: #888; }
+.experience-item h4 { margin: 2px 0 5px; color: #3498db; font-weight: 600; font-size: 0.9rem; }
+.experience-item p { margin: 0; font-size: 0.9rem; line-height: 1.5; color: #444; }
 
-a { color: #3498db; text-decoration: none; }
+/* SKILLS (Right Col) */
+.skill-item { font-size: 0.9rem; margin-bottom: 6px; color: #444; display: flex; align-items: flex-start; }
+.skill-item .bullet { color: #3498db; margin-right: 8px; font-weight: bold; }
+
+
+/* --- MOBILE RESPONSIVENESS (Reset to scroll) --- */
+@media (max-width: 900px) {
+  body {
+    height: auto; /* Allow scroll on mobile */
+    overflow: auto;
+    display: block;
+    background: white;
+  }
+
+  .page-wrapper {
+    height: auto;
+    box-shadow: none;
+    padding: 20px;
+  }
+
+  .resume-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  /* Re-order for mobile: Summary -> Exp -> Edu -> Skills */
+  .area-header  { order: 1; }
+  .area-summary { order: 2; }
+  .area-center  { order: 3; } /* Experience */
+  .area-left    { order: 4; } /* Edu */
+  .area-right   { order: 5; } /* Skills */
+  
+  .header-row { flex-direction: column; gap: 5px; }
+  .contact-info { flex-direction: column; align-items: center; gap: 5px; }
+  .separator { display: none; }
+}
