@@ -107,7 +107,7 @@ export default function App() {
         </section>
 
         <section id="contact" className="section">
-          <Reveal><div className="contact-card"><h2>Let's Talk</h2><p>Looking for an internship April–October 2027. Backend, fullstack, or data engineering — I'm flexible.</p><div className="contact-links"><a href="mailto:tithipan.the@gmail.com" className="contact-link">📧 tithipan.the@gmail.com</a><a href="https://github.com/ttithipan" className="contact-link" target="_blank" rel="noreferrer">🐙 GitHub</a><a href="https://www.linkedin.com/in/ttithipan/" className="contact-link" target="_blank" rel="noreferrer">💼 LinkedIn</a></div></div></Reveal>
+          <Reveal><div className="contact-card"><h2>Let's Talk</h2><p>Looking for an internship April–December 2027. Backend, fullstack, or data engineering — I'm flexible.</p><div className="contact-links"><a href="mailto:tithipan.the@gmail.com" className="contact-link">📧 tithipan.the@gmail.com</a><a href="https://github.com/ttithipan" className="contact-link" target="_blank" rel="noreferrer">🐙 GitHub</a><a href="https://www.linkedin.com/in/ttithipan/" className="contact-link" target="_blank" rel="noreferrer">💼 LinkedIn</a></div></div></Reveal>
           <div className="copyright">© {new Date().getFullYear()} Tithipan Thepsuthin · Built with React + Vite</div>
         </section>
       </div>
